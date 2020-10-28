@@ -1,6 +1,5 @@
 const express = require('express');
-const { uuid } = require('uuidv4');
-
+const { v4: uuid, validate: isUuid } = require('uuid');
 const app = express();
 
 app.use(express.json());
@@ -22,7 +21,39 @@ app.use(express.json());
  * Request Body: Conteúdo na hora de criar ou editar um recurso (JSON)
  */
 
+ /**
+  * Middleware: 
+  * 
+  * Interceptador de requisições que interromper totalmente a requisição ou alterar dados da reuisição.
+  * 
+  */
+
  const projects = [];
+
+ function logRequest(req, res, next){
+   const { method, url } = req;
+
+   const logLabel = `[${method.toUpperCase()}] ${url}`;
+
+   console.time(logLabel);
+
+   next(); // Próximo middleware
+
+   console.timeEnd(logLabel);
+ }
+
+ function validatePorjectId(req, res, next) {
+   const { id } = req.params;
+
+   if (!isUuid(id)){
+     return res.status(400).json({ error: 'Invalid project ID.' });
+   }
+
+   return next();
+ }
+
+ app.use(logRequest);
+ app.use('/projects/:id', validatePorjectId);
 
 app.get('/projects', (req, res) => {
   const {title } = req.query;
