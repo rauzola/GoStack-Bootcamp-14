@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import api from './services/api';
 
 import Header from './components/Header';
 
@@ -9,12 +10,18 @@ import Header from './components/Header';
  */
 
 export default function App() {
-  const [projects, setProjects] = useState(['Desenvolvimento de app', 'Front-end web']);
+  const [projects, setProjects] = useState([]);
 
   //useState retorna um arry com 2 posições
   //
   // 1. Variavel com seu valor inicial
   // 2. Função para atualizar esse valor
+
+  useEffect(() => {
+    api.get('/projects').then(response => {
+      setProjects(response.data);
+    })
+  }, []);
 
   function handleAddProject() {
     // projects.push(`novo project ${Date.now()}`);
@@ -29,7 +36,7 @@ export default function App() {
       <Header title="Projects" />
 
       <ul>
-        {projects.map(project => <li key={project}>{project}</li>)}
+        {projects.map(project => <li key={project.id}>{project.title}</li>)}
       </ul>
 
       <button type="button" onClick={handleAddProject}>Adicionar projeto</button>
