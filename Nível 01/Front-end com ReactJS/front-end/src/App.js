@@ -23,12 +23,17 @@ export default function App() {
     })
   }, []);
 
-  function handleAddProject() {
-    // projects.push(`novo project ${Date.now()}`);
+  async function handleAddProject() {
+    // setProjects([...projects, `novo project ${Date.now()}`]);
 
-    setProjects([...projects, `novo project ${Date.now()}`]);
+    const response = await api.post('/projects', {
+        title: `Novo projeto ${Date.now()}`,
+        owner: "Raul Sigoli"
+      });
 
-    console.log(projects);
+      const project = response.data;
+
+      setProjects([...projects, project]);
   }
 
   return (
