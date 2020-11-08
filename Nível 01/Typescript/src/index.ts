@@ -1,11 +1,12 @@
 import express from 'express';
 
 
+import {helloWorld} from './routes';
+
 const app = express();
 
-app.get('/', (req, res) => {
-    return res.json({ message: 'Hello' });
-})
+app.get('/', helloWorld);
+
 
 app.listen(3333, () => {
     console.log(`^_^ Back-end started ^_^`)
