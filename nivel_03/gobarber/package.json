@@ -10,6 +10,13 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.14.0",
+    "@typescript-eslint/parser": "^4.14.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "2.20.1",
+    "eslint-plugin-jsx-a11y": "6.2.3",
+    "eslint-plugin-react": "7.19.0",
+    "eslint-plugin-react-hooks": "2.5.0",
     "react": "16.13.1",
     "react-native": "0.63.4",
     "react-native-cli": "^2.0.1"
@@ -22,9 +29,13 @@
     "@types/react-native": "^0.63.2",
     "@types/react-test-renderer": "^16.9.2",
     "babel-jest": "^25.1.0",
-    "eslint": "^6.5.1",
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-import-resolver-typescript": "^2.3.0",
+    "eslint-plugin-prettier": "^3.3.1",
     "jest": "^25.1.0",
     "metro-react-native-babel-preset": "^0.59.0",
+    "prettier": "^2.2.1",
     "react-test-renderer": "16.13.1",
     "typescript": "^3.8.3"
   },
